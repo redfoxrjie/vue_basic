@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            background-color: #ffca2d;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="reduce">-</button>
+        {{res}}
+        <button @click="add">+</button>
+        <br>
+        總價: {{parse()}}
+        美金: {{parseDollar()}}
+    </div>
+
+    <!------分隔線------>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    res: 0,
+                    count: 10,
+                    price: 100,
+                    dollar: 0
+                }
+            },
+            methods: {
+                add(){
+                    // this.res = this.res + 1
+                    // this.res += 1
+                    // this.res += this.count
+                    if(this.res >= 100) return
+                    this.res += this.count
+                },
+                reduce(){
+                    // this.res = this.res -1
+                    // this.res -= 1
+                    // this.res -= this.count
+                    // if(this.res <= this.count ) return
+                    if(this.res ==0 ) return
+                    this.res -= this.count
+                },
+                parseDollar(){
+                    console.log('DEBT4號豬哥亮');
+                    retuen this.dollar = this.price * this.res
+                },
+                parse(){
+                    // console.log('DEBT4號豬哥亮');
+                    return this.price * this.res
+                },
+                
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
