@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Test1</title>
 </head>
+
 <body>
-    
+    <div id="app">
+        <p>歡迎 {{name}} 來到這個網站，他最愛的動物是{{animal[0]}}</p>
+        <p>{{live?"活著":"掛了"}}</p>
+        <!--利用問號與冒號分隔ture, false判斷，此例中，如果live為true，顯示"活著"；false則顯示"掛了"-->
+        <h6 v-text="age"></h6>
+        <h6 v-html="content"></h6>
+        <h6 v-text="`${animal[0]}`"></h6> <!--用陣列引數取值-->
+        <h6>{{animal[2]}}</h6>
+        <h5>{{skill["b2e"][2]}}</h5>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        // debugger;
+        // console.log(Vue);
+        const app = Vue.createApp({
+            data() {
+                return {
+                    name: 'Rjie',
+                    age: 29,
+                    content: `<div style="color: red;">問號問號問號</div>`,
+                    live: true,
+                    animal: ['fox', 'dog', 'cat'],
+                    skill: {
+                        f2e: ['vue', 'react'],
+                        b2e: ['php', 'node.js', 'ASP.net'],
+                    },
+                    gender: null
+                }
+            },
+        });
+        app.mount('#app');
+    </script>
 </body>
+
 </html>
