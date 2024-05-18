@@ -17,7 +17,7 @@
         <button @click="add">+</button>
         <br>
         總價: {{parse()}}
-        美金: {{parseDollar()}}
+        <!-- 美金: {{parseDollar()}} -->
     </div>
 
     <!------分隔線------>
@@ -29,7 +29,7 @@
                     res: 0,
                     count: 10,
                     price: 100,
-                    dollar: 0
+                    total: 0
                 }
             },
             methods: {
@@ -48,13 +48,17 @@
                     if(this.res ==0 ) return
                     this.res -= this.count
                 },
-                parseDollar(){
-                    console.log('DEBT4號豬哥亮');
-                    retuen this.dollar = this.price * this.res
-                },
+                // parseDollar(){
+                //錯誤寫法
+                //     console.log('DEBT4號豬哥亮');
+                //     retuen this.dollar = this.price * this.res
+                // },
                 parse(){
+                    //半正確寫法
+                    // return this.price * this.res
                     // console.log('DEBT4號豬哥亮');
-                    return this.price * this.res
+                    this.total = this.price * this.res
+                    return this.total
                 },
                 
             }
