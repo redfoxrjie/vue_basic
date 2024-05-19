@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七彩霓虹燈</title>
+    <style>
+        button {
+            border: 0px;
+            background-color: #393129;
+            border-radius: 5px;
+            color: #fff9f1;
+            padding: 6px 24px;
+        }
+        .box {
+            width: 200px;
+            height: 100px;
+            margin-top: 20px;
+        }
+        .red {
+            background-color: red;
+        }
+        .orange {
+            background-color: orange;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+        .green {
+            background-color: green;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .indigo {
+            background-color: indigo;
+        }
+        .purple {
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{tab}}
+        <button @click="changeColor">換色</button>
+        <div class="box" :class="color[tab]"></div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    color: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'],
+                    tab: 0
+                }
+            },
+            methods: {
+                changeColor(){
+                    if(this.tab >= this.color.length-1) {
+                        this.tab = 0;
+                        
+                    } else {
+                        this.tab += 1;
+                    }
+                    // this.tab = (this.tab + 1) % this.color.length; //用取餘數方式，tab為0時餘數變為tab+1，當tab為7時則餘數自動變為0。
+                    console.log(this.tab);
+                    console.log(this.color[this.tab]);
+                }
+            },
+        }).mount('#app');
+    </script>
+</body>
+</html>
