@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100px;
+            display: block;
+        }
+        .product-item {
+            display: flex;
+            gap: 50px;
+            padding: 30px 14px;
+        }
+        .product-discription h4 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            color: #393129;
+            margin: 18px 0px;
+        }
+        .price {
+            font-size: 24px;
+            color: rgb(134, 119, 107);
+        }
+        .rate {
+            font-size: 16px;
+            margin: 12px 0px;
+        }
+        .stars {
+            color: #ffc802;
+        }
+        button {
+            background-color: #393129;
+            color: #fff;
+            padding: 8px 24px;
+            border: 0px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d36900;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 5.上架 -->
+        <div v-for="prodItem in products" class="product-item">
+            <img :src="prodItem.image" alt="">
+            <div class="product-discription">
+                <h4>{{prodItem['title']}}</h4>
+                <div class="price">${{prodItem['price']}}</div>
+                <div class="rate">
+                    {{prodItem?.rating?.rate}} ({{prodItem?.rating?.count}})
+                    <!-- 利用問號?確認是否有該物件或屬性值的存在，再顯示 -->
+                    <!-- {{parseInt(prodItem?.rating?.rate)}} -->
+                    <span class="stars" v-for="star in parseInt(prodItem?.rating?.rate)">★</span>
+                </div>
+                <button>Buy now</button>
+            </div>
+        </div>
+        {{products}}
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    products: []
+                }
+            },
+            mounted() {
+                // 1.畫面渲染完開始執行作用域中的東西
+                // 2.叫貨車
+                fetch('https://fakestoreapi.com/products/')
+                .then(res => {
+                    //3.貨車到了
+                    return res.json()
+                })
+                .then(json => {
+                    //4.貨車卸貨
+                    console.log(json)
+                    this.products = json
+                })
+            },
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

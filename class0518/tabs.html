@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app {
+            position: relative;
+        }
+        #app > div {
+            position: absolute;
+            left: 0;
+            top: 50px;
+            width: 5rem;
+            height: 5rem;
+            font-size: 5rem;
+            border-radius: 10px;
+        }
+        #app >.box {
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="current = 'A'">A</button>
+        <button @click="current = 'B'">B</button>
+        <button @click="current = 'C'">C</button>
+
+        <div v-if="current === 'A'" >A</div>
+        <div v-else-if="current === 'B'">B</div>
+        <div v-else>C</div>
+        <br>
+        <div v-show="current === 'A'" class="box">A</div>
+        <div v-show="current === 'B'" class="box">B</div>
+        <div v-show="current === 'C'" class="box">C</div>
+        {{current}}
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    current: 'A'
+                }
+            },
+        }).mount('#app');
+    </script>
+</body>
+</html>
