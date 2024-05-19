@@ -80,20 +80,22 @@
                 <div class="col-9">
                     <h2>Shopping Cart</h2>
                     <div class="item-list">
-                        <div class="row item" v-for="(cartItem, cartIndex) in cartList">
+                        <div class="row item" v-for="(cartItem, cartIndex) in cartList" :key="cartItem['id']">
+                            <!-- {{cartItem['title']}}
+                            {{cartIndex}} -->
                             <div class="item-img">
-                                <img :src="cartList[cartIndex]['img']" alt="">
+                                <img :src="cartItem['img']" alt="">
                             </div>
                             <div class="p-title">
-                                <h5 class="p-name">{{cartList[cartIndex]['title']}}</h5>
-                                <div class="p-num">{{cartList[cartIndex]['subTitle']}}</div>
+                                <h5 class="p-name">{{cartItem['title']}}</h5>
+                                <div class="p-num">{{cartItem['subTitle']}}</div>
                             </div>
                             <div class="row counter">
                                 <button class="btn minus" @click="reduce(cartIndex)">-</button>
-                                <div class="count">{{cartList[cartIndex]['count']}}</div>
+                                <div class="count">{{cartItem['count']}}</div>
                                 <button class="btn plus" @click="add(cartIndex)">+</button>
                             </div>
-                            <div class="price">${{cartList[cartIndex]['price']}}</div>
+                            <div class="price">${{cartItem['price']}}</div>
                             <button class="cancelX">X</button>
                         </div>
                     </div>
@@ -124,7 +126,7 @@
                             subTitle: 'ddd',
                             price: 11.90,
                             count: 2,
-                            img: "/images/IMG_0027.JPG"
+                            img: "/images/news_soft-light-night-room_s.jpg"
                         },
                     ]
                 }
