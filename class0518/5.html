@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>點擊換色</title>
+    <style>
+        /* img {
+            width: 6rem;
+            padding: 0.5rem;
+        } */
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <img src="/images/news_soft-light-night-room_s.jpg" alt=""> -->
+        <!-- <img :src="imgUrl" style="width: 6rem;" alt=""> -->
+        <img :src="imgUrl" :style="{
+            widths: `${widths}rem`,
+            backgroundColor: bg,
+            padding: '0.5rem'
+        }" alt="">
+        <!-- 需要注意inline使用的是駝峰式寫法，且後方不加分號，寫值時使用的是引號包成的字串 -->
+        <button @click="addW">加大圖片</button>
+    </div>
+
+    <!------分隔線------>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    imgUrl: "/images/news_soft-light-night-room_s.jpg",
+                    bg: '#999', // string
+                    widths: 0 //number
+                }
+            },
+            methods: {
+                addW(){
+                    if(this.widths === 9) return
+                    //每次按下去就加大圖片
+                    this.widths += 1
+                    //延伸: 每次按下去改底色
+                    this.bg = `#${this.widths}${this.widths}${this.widths}`
+                }
+            },
+        }).mount('#app');
+    </script>
+</body>
+</html>
